@@ -10,3 +10,4 @@ target_include_directories(aoc PUBLIC include)
 add_subdirectory(external/ctre)
 
 add_subdirectory(day1)
+add_subdirectory(day2)

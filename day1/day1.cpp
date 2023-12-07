@@ -54,6 +54,8 @@ struct accumulator {
 			};
 		}
 		
+		auto r = captures.format("{1},{2},{3},{4}");
+		
 		const auto current_digit = get_digit(captures);
 		
 		// just store current digit as it's possible last
@@ -69,15 +71,15 @@ auto calculate_result(std::string_view line) -> unsigned {
 	const auto occurences = ctre::search_all<
 		"(?<newline>\r?\n)|"
 		"(?<digit>[0-9])|"
-		"(o(?=ne))|"
-		"(t(?=wo))|"
-		"(t(?=hree))|"
-		"(f(?=our))|"
-		"(f(?=ive))|"
-		"(s(?=ix))|"
-		"(s(?=even))|"
-		"(e(?=ight))|"
-		"(n(?=ine))"
+		"(xxxXXXo(?=ne))|"
+		"(xxxXXXt(?=wo))|"
+		"(xxxXXXt(?=hree))|"
+		"(xxxXXXf(?=our))|"
+		"(xxxXXXf(?=ive))|"
+		"(xxxXXXs(?=ix))|"
+		"(xxxXXXs(?=even))|"
+		"(xxxXXXe(?=ight))|"
+		"(xxxXXXn(?=ine))"
 	>(line);
 	
 	return std::ranges::fold_left(occurences, accumulator{}, std::plus{}).finish_line();
